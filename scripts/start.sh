@@ -16,6 +16,11 @@ if [ ! -z "$WEBROOT" ]; then
  sed -i "s#root /var/www/html;#root ${WEBROOT};#g" /etc/nginx/sites-available/default.conf
 fi
 
+# Set custom expires
+if [ ! -z "$EXPIRES" ]; then
+ sed -i "s#expires 5d;#expires ${EXPIRES};#g" /etc/nginx/sites-available/default.conf
+fi
+
 # Setup git variables
 if [ ! -z "$GIT_EMAIL" ]; then
  git config --global user.email "$GIT_EMAIL"
